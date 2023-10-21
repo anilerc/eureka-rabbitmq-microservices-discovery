@@ -15,7 +15,7 @@ public class FraudCheckHistoryController {
 
     private final FraudCheckHistoryService fraudCheckHistoryService;
 
-    @GetMapping(path = "{customerId}")
+    @GetMapping(path = "/{customerId}")
     public ResponseEntity<FraudCheckPayload> getFraudCheckHistory(@PathVariable("customerId") Long customerId) {
 
         Boolean isFraud = fraudCheckHistoryService.isCustomerFraud(customerId);
