@@ -1,0 +1,26 @@
+server:
+  port: 8085
+spring:
+  config:
+    import: file:env.properties
+  application:
+    name: notification
+  datasource:
+    url: ${NOTIFICATION_DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
