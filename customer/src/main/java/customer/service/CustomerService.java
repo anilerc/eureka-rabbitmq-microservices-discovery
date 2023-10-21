@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import notification.NotificationClient;
 import notification.NotificationRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 @AllArgsConstructor
@@ -25,13 +26,15 @@ public class CustomerService {
                             email(customerRegistrationRequest.email()).
                             build();
 
+
+        customerRepository.saveAndFlush(customer);
+
         var fraudCheckResult = fraudClient.getFraudCheckHistory(customer.getId()).getBody().isFraudster();
 
         if (fraudCheckResult) {
             throw new IllegalStateException("Fraud");
         }
 
-        customerRepository.save(customer);
 
         // TODO: Make it ASYNC using Kafka or RabbitMQ!
         notificationClient.sendNotification(new NotificationRequest(customer.getId(),
