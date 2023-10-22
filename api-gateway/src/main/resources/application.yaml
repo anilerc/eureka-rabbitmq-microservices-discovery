@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: customer
+          uri: lb://CUSTOMER
+          predicates:
+            - Path=/api/v1/customers/**
+        - id: fraud
+          uri: lb://FRAUD
+          predicates:
+            - Path=/api/v1/fraud-check-history/**
+        - id: notification
+          uri: lb://NOTIFICATION
+          predicates:
+            - Path=/api/v1/notifications/**
+
+server:
+  port: 8086
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
