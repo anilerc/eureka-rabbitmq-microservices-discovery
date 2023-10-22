@@ -11,3 +11,8 @@ Start date is 20.10.2023. My aims for the next iterations are:
 Following N-tier, layered architecture for a clean architecture throughout the repository.
 
 As I further improve, I will also refactor to better solutions (i.e. switching from RestTemplate to OpenFeign). 
+
+
+# Updates after each iteration
+
+22.10 -> Successfully implemented Spring Cloud Gateway as an entry point to all microservices
