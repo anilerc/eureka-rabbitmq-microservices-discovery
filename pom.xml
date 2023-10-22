@@ -18,6 +18,7 @@
       <module>eureka-discovery-server</module>
     <module>feign-microservice-clients</module>
     <module>notification</module>
+    <module>api-gateway</module>
   </modules>
 
   <properties>
