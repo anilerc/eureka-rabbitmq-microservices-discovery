@@ -9,6 +9,7 @@ import notification.NotificationClient;
 import notification.NotificationRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import rabbitmq.RabbitMQMessageProducer;
 
 @Service
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
-    private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
 
@@ -37,10 +38,15 @@ public class CustomerService {
 
 
         // TODO: Make it ASYNC using Kafka or RabbitMQ!
-        notificationClient.sendNotification(new NotificationRequest(customer.getId(),
-                                            customer.getEmail(),
-                                            String.format("Hello %s, welcome to the app!", customer.getFirstName())
-                ));
+
+        var notificationRequest = new NotificationRequest(customer.getId(),
+                customer.getEmail(),
+                String.format("Hello %s, welcome to the app!", customer.getFirstName()));
+
+        rabbitMQMessageProducer.
+                publish(notificationRequest, "internal.exchange", "internal.notification.routing-key");
+
+
 
     }
 }
