@@ -2,6 +2,7 @@ package rabbitmq;
 
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -36,7 +37,7 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    public Jackson2JsonMessageConverter converter() {
+    public MessageConverter converter() {
         return new Jackson2JsonMessageConverter();
     }
 }
