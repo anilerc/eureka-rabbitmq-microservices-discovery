@@ -1,4 +1,4 @@
-# eureka-spring-kafka-microservices
+# spring-eureka-rabbitmq-microservices
 
 In this project, I am honing my Java/Spring microservices skills by communicating fraud detection, customer and notification microservices with RabbitMQ, Eureka Service Discovery, Spring Cloud OpenFeign, Web MVC, Postgres and many many more. 
 
