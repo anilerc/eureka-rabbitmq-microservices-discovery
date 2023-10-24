@@ -13,5 +13,7 @@ Following N-tier, layered architecture for a clean architecture throughout the r
 # Updates after each iteration
 
 21.10 -> Switched from RestTemplate to **OpenFeign** for better communication between services.  
+
 22.10 -> Successfully implemented **Spring Cloud Gateway** as an entry point to all microservices. As of today, all requests will flow through the initial gateway, and all routing will be done from here.  
+
 24.10 -> **Successfully implemented RabbitMQ** exchange, binding and queues. Async communication is obtained between Customer and Notification services.
